@@ -55,6 +55,149 @@
 						<small>Autor prezentacji: <a target="_blank" href="mailto:adelura@gmail.com">Artur Delura</a></small>
 					</p>
 				</section>
+
+				<section data-markdown="">
+					<script type="text/template">
+						## Wprowadzenie do obiektowości
+
+						Obiekty jako opis rzeczywistości
+					</script>
+				</section>
+
+				<section>
+					<h2>Document Object Model</h2>
+					<p>Opisuje w jaki sposób manipulować strukturą dokumentu, zmieniać właściwości elementów, usuwać, dodawać, reagować na zdarzenia i wiele innych</p>
+				</section>
+
+				<section>
+					<h2>DOM - dostęp do elementów</h2>
+					<pre><code contenteditable="true" class="javascript">
+// zwraca obiekt reprezentujący element o danym id
+document.getElementById('id');
+
+// zwraca tablicę obiektów reprezentujących tagi span
+document.getElementsByTagName('span');
+
+// zwraca tablicę obiektów reprezentujących elementy o danej klasie
+document.getElementsByClassName('klasa');
+
+// zwraca pierwszy obiekt reprezentujący element który pasuje do selektora, tak jak w CSS
+// aby pobrać wszystkie elementy użyj querySelectorAll
+document.querySelector('[data‑id="1"]');
+					</code></pre>
+
+					<a target="_blank" href="http://jsbin.com/gajesu/2/edit?js,console,output">jsbin.com/gajesu/2</a>
+				</section>
+
+				<section>
+					<h2>DOM - dostęp do elementów</h2>
+					<pre><code contenteditable="true" class="javascript">
+// Obiekty te posiadają właściwości, które możemy modyfikować.
+
+// właściwość elementu ‑ węzeł rodzica
+element.parentNode
+
+// właściwość elementu ‑ lista dzieci
+element.childNodes
+
+// właściwość elementu ‑ pierwsze dziecko
+element.firstChild
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>DOM - praca z obiektami</h2>
+					<pre><code contenteditable="true" class="javascript">
+// tekst w elemencie, zobacz, co kryje się pod adresem
+element.innerText = 'http://jsbin.com/camave/2/edit';
+
+// kod HTML w elemencie
+element.innerHTML = '<p>Jestem paragrafem</p>'
+
+// zestaw danych w elemencie, jeżeli elementem jest paragraf o poniższej strukturze
+// <p data-id="1"></p> to
+element.dataset.id // zwróci '1'
+
+// metody manipulujące atrybutami elementów
+element.setAttribute, element.getAttribute, element.hasAttribute, element.removeAttribute
+
+// metody manipulujace atrybutem class elementu
+element.classList.remove, element.classList.add, element.classList.toggle, element.classList.contains
+					</code></pre>
+					<a target="_blank" href="http://jsbin.com/tutate/3/edit">jsbin.com/tutate/3</a>
+				</section>
+
+				<section>
+					<h2>DOM- usuwanie, dodawanie, przenoszenie elementów</h2>
+					<pre><code contenteditable="true" class="javascript">
+// tworzy nowy obiekt reprezentujący element img
+var img = document.createElement('img');
+img.src = 'http://codecarrotsjs.github.io/gfx/ggc_logo.svg';
+
+// dodaje dziecko do elementu
+element.appendChild(img);
+
+// usuwa dziecko z rodzica
+element.removeChild(img);
+
+// dodaje dziecko do elementu przed określonym elementem
+parent.insertBefore(insertElement, beforeMe);
+					</code></pre>
+				</section>
+				<section>
+					<h2>DOM - zdarzenia</h2>
+						<pre><code contenteditable="true" class="javascript">
+// gdy jest zdarzenie ‑ wiedz, że coś się dzieje
+window.addEventListener('load', function () {
+	alert('Strona jest załadowana');
+});
+
+var button = document.getElementById('button');
+button.addEventListener('click', function () {
+	window.location = 'http://codecarrotsjs.github.io/';
+});
+
+window.open('http://jsbin.com/waviyo/5/edit');
+
+// więcej o zdarzeniach
+window.open('http://bit.ly/1cDC1x3');
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>DOM - formularze</h2>
+					<pre><code contenteditable="true" class="html">
+&lt;!doctype html>
+&lt;html>
+	&lt;head>
+		&lt;title>Form przykład&lt;/title>
+		&lt;meta charset="utf-8" />
+	&lt;/head>
+	&lt;body>
+		&lt;form action="http://google.pl" method="post">
+			&lt;p>
+				&lt;label for="speed">Speed: &lt;/label>
+				&lt;input id="speed" type="text" name="speed" />
+			&lt;/p>
+			&lt;p>
+				&lt;label for="submit">Submit: &lt;/label>
+				&lt;input id="submit" type="submit" />
+			&lt;/p>
+		&lt;/form>
+		&lt;script>
+			var form = document.getElementsByTagName('form')[0];
+
+			form.addEventListener('submit', function (e) {
+				alert(form.querySelector('[name="speed"]').value);
+
+				// zapobiegnięcie domyślnej akcji, czyli przeładowania strony
+				e.preventDefault();
+			});
+		&lt;/script>
+	&lt;/body>
+&lt;/html>
+					</code></pre>
+				</section>
 			</div>
 
 		</div>
